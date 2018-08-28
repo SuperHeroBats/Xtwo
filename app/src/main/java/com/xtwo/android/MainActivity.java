@@ -2,6 +2,7 @@ package com.xtwo.android;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -34,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
     //创建图片数组
     private Memory[] memories = {
-            new Memory("上任师兄师姐们", R.drawable.img1), new Memory("上任师兄师姐们", R.drawable.img2),
-            new Memory("上任师兄师姐们", R.drawable.img3), new Memory("上任师兄师姐们", R.drawable.img4),
-            new Memory("上任师兄师姐们", R.drawable.img5), new Memory("上任师兄师姐们", R.drawable.img6),
-            new Memory("上任师兄师姐们", R.drawable.img7), new Memory("上任师兄师姐们", R.drawable.img8),
-            new Memory("上任师兄师姐们", R.drawable.img9), new Memory("上任师兄师姐们", R.drawable.img10),
-            new Memory("上任师兄师姐们", R.drawable.img11), new Memory("上任师兄师姐们", R.drawable.img12),
-            new Memory("毕业了喂", R.drawable.img13), new Memory("毕业了喂", R.drawable.img14),
-            new Memory("毕业了喂", R.drawable.img15), new Memory("毕业了喂", R.drawable.img16),
-            new Memory("毕业了喂", R.drawable.img17), new Memory("换届了喂", R.drawable.img18),
+            new Memory("第三届师兄师姐们", R.drawable.img1), new Memory("最开心就是搞服务日", R.drawable.img2),
+            new Memory("最开心就是搞服务日", R.drawable.img3), new Memory("最开心就是搞服务日", R.drawable.img4),
+            new Memory("最开心就是搞服务日", R.drawable.img5), new Memory("最开心就是搞服务日", R.drawable.img6),
+            new Memory("社团周年庆", R.drawable.img7), new Memory("社团周年庆", R.drawable.img8),
+            new Memory("社团周年庆", R.drawable.img9), new Memory("第三届师兄师姐们", R.drawable.img10),
+            new Memory("第三届师兄师姐们", R.drawable.img11), new Memory("社团周年庆", R.drawable.img12),
+            new Memory("社团周年庆", R.drawable.img13), new Memory("红红火火恍恍惚惚", R.drawable.img14),
+            new Memory("红红火火恍恍惚惚", R.drawable.img15), new Memory("红红火火恍恍惚惚", R.drawable.img16),
+            new Memory("红红火火恍恍惚惚", R.drawable.img17), new Memory("换届了喂", R.drawable.img18),
             new Memory("换届了喂", R.drawable.img19), new Memory("换届了喂", R.drawable.img20),
             new Memory("换届了喂", R.drawable.img21), new Memory("换届了喂", R.drawable.img22),
             new Memory("换届了喂", R.drawable.img23), new Memory("换届了喂", R.drawable.img24),
@@ -54,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
             new Memory("红红火火恍恍惚惚", R.drawable.img35), new Memory("红红火火恍恍惚惚", R.drawable.img36),
             new Memory("红红火火恍恍惚惚", R.drawable.img37), new Memory("最开心就是搞服务日", R.drawable.img38),
             new Memory("最开心就是搞服务日", R.drawable.img39), new Memory("最开心就是搞服务日", R.drawable.img40),
-            new Memory("最开心就是搞服务日", R.drawable.img41), new Memory("最开心就是搞服务日", R.drawable.img42),
-            new Memory("最开心就是搞服务日", R.drawable.img43), new Memory("最开心就是搞服务日", R.drawable.img44),
+            new Memory("最开心就是搞服务日", R.drawable.img41), new Memory("红红火火恍恍惚惚", R.drawable.img42),
+            new Memory("最开心就是搞服务日", R.drawable.img43), new Memory("红红火火恍恍惚惚", R.drawable.img44),
             new Memory("社团周年庆", R.drawable.img45), new Memory("社团周年庆", R.drawable.img46),
             new Memory("社团周年庆", R.drawable.img47), new Memory("啦啦啦啦", R.drawable.img48),
-            new Memory("优秀执行团队", R.drawable.h49), new Memory("专注的人最帅", R.drawable.h50)};
+            new Memory("优秀执行团队", R.drawable.h49), new Memory("专注的人最帅", R.drawable.h50),
+            new Memory("红红火火恍恍惚惚", R.drawable.img51), new Memory("红红火火恍恍惚惚", R.drawable.img52),
+            new Memory("红红火火恍恍惚惚", R.drawable.img53), new Memory("红红火火恍恍惚惚", R.drawable.img54),
+            new Memory("红红火火恍恍惚惚", R.drawable.img55)};
 
     private List<Memory> memoryList = new ArrayList<>();
     private MemoryAdapter adapter;
@@ -108,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(aboutIntent);
                         break;
                     case R.id.nav_update:
-                        ToastUtil.showShortToast(MainActivity.this, "当前版本为最新V1.0");
+                        ToastUtil.showShortToast(MainActivity.this, "当前版本为最新V1.1");
                         break;
                     default:
                         break;
