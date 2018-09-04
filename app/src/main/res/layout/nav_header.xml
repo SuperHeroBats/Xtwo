@@ -13,22 +13,63 @@
         android:layout_width="70dp"
         android:layout_height="70dp" />
 
-    <TextView
-        android:id="@+id/username"
-        android:text="这是一个技术牛X的社团"
-        android:textSize="14sp"
-        android:textColor="#FFF"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/mail"
+        <!--基本信息-->
+        <TextView
+        android:id="@+id/user_name"
         android:text="软小二"
         android:textSize="16sp"
         android:textColor="#FFF"
-        android:layout_above="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+        <TextView
+        android:id="@+id/user_text"
+        android:text="这是一个技术牛X的社团"
+        android:textSize="14sp"
+        android:textColor="#FFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+            <!--&lt;!&ndash;定位及天气信息&ndash;&gt;-->
+            <!--<TextView-->
+                <!--android:id="@+id/position"-->
+                <!--android:text="定位"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textColor="#fff"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/weather"-->
+                <!--android:text="天气"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textColor="#fff"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/temperature"-->
+                <!--android:text="温度"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textColor="#fff"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
 
 </RelativeLayout>

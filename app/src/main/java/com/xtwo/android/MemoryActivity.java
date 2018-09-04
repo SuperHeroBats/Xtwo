@@ -1,8 +1,6 @@
 package com.xtwo.android;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
@@ -15,6 +13,7 @@ import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.xtwo.android.util.ToastUtil;
 
 public class MemoryActivity extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public class MemoryActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showShortToast(MemoryActivity.this , "功能待开发");
+                ToastUtil.showShortToast("功能待开发");
             }
         });
 

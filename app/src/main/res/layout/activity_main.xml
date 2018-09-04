@@ -54,15 +54,8 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu">
 
-        <!--Exit-->
-        <ImageView
-            android:id="@+id/exit"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/nav_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!--引入底部设置退出-->
+        <include layout="@layout/nav_bottom" />
 
     </android.support.design.widget.NavigationView>
     

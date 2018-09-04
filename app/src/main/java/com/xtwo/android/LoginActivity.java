@@ -2,18 +2,16 @@ package com.xtwo.android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.xtwo.android.util.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -32,7 +30,7 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ToastUtil.showShortToast(LoginActivity.this , "欢迎体验软件技术开发社团自主开发的APP");
+        ToastUtil.showShortToast("欢迎体验软件技术开发社团自主开发的APP");
 
 
 
@@ -58,12 +56,12 @@ public class LoginActivity extends AppCompatActivity{
                     }
                     editor.apply();
 
-                    ToastUtil.showShortToast(LoginActivity.this , "登录成功");
+                    ToastUtil.showShortToast("登录成功");
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }else {
-                    ToastUtil.showShortToast(LoginActivity.this , "账号或者密码错误");
+                    ToastUtil.showShortToast("账号或者密码错误");
                 }
             }
         });
@@ -86,7 +84,7 @@ public class LoginActivity extends AppCompatActivity{
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showShortToast(LoginActivity.this , "功能待开发");
+                ToastUtil.showShortToast("功能待开发");
             }
         });
 

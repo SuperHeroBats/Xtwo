@@ -1,11 +1,12 @@
 package com.xtwo.android;
 
-import android.content.Context;
+import android.Manifest;
 import android.content.Intent;
-import android.os.Build;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,19 +15,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+
+import com.baidu.location.BDAbstractLocationListener;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.xtwo.android.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    //获取天气及定位
+//    private TextView positionText;
+//    private LocationClient mLocationClient;
 
     //实例化DrawerLayout
     private DrawerLayout mDrawerLayout;
@@ -70,7 +82,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //实例化LocationClient并注册
+//        mLocationClient = new LocationClient(getApplicationContext());
+//        mLocationClient.registerLocationListener(new MyLocationListener());
+
         setContentView(R.layout.activity_main);
+
+//        positionText = findViewById(R.id.position);
+        //判断是否有权限 加入权限组
+//        List<String> permissionList = new ArrayList<>();
+//        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+//        }
+//        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+//        }
+//        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//        }
+//        if (!permissionList.isEmpty()) {
+//            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
+//            ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
+//        } else {
+//            requestLocation();
+//        }
 
         //刷新数据
         swipeRefresh = findViewById(R.id.swipe_refresh);
@@ -78,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshMomorys();
+                refreshMemories();
             }
         });
 
         //加载RecyclerView 初始化
-        initMemorys();
+        initMemories();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);   //设置布局方式 一行两列
         recyclerView.setLayoutManager(layoutManager);
@@ -99,21 +135,25 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     //选中photo 关闭滑动菜单直接显示照片墙
-                    case R.id.nav_photo:
+                    case R.id.nav_photo:   //照片墙
                         mDrawerLayout.closeDrawers();
                         break;
-                    case R.id.nav_we:
-                        ToastUtil.showShortToast(MainActivity.this, "主功能开发中");
+                    case R.id.nav_we:   //We软小二
+                        ToastUtil.showShortToast("主功能开发中");
                         break;
-                    case R.id.nav_friends:
-                        ToastUtil.showShortToast(MainActivity.this, "功能待开发");
+                    case R.id.nav_friends:   //朋友
+                        ToastUtil.showShortToast("功能待开发");
                         break;
-                    case R.id.nav_about:
+                    case R.id.nav_about:   //关于
                         Intent aboutIntent = new Intent(MainActivity.this, AboutActivity.class);
                         startActivity(aboutIntent);
                         break;
-                    case R.id.nav_update:
-                        ToastUtil.showShortToast(MainActivity.this, "当前版本为最新V1.1");
+                    case R.id.nav_update:   //检查版本
+                        ToastUtil.showShortToast("当前版本为最新V1.1");
+                        break;
+                    case R.id.nav_build:   //智能报修
+                        Intent buildIntent = new Intent(MainActivity.this, RepairActivity.class);
+                        startActivity(buildIntent);
                         break;
                     default:
                         break;
@@ -137,23 +177,67 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //退出登录
-        ImageView exit = findViewById(R.id.exit);
+        TextView exit = findViewById(R.id.exit_text);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-                ToastUtil.showShortToast(MainActivity.this , "成功退出");
+                ToastUtil.showShortToast("成功退出");
                 finish();
             }
         });
     }
 
+    //请求定位
+//    private void requestLocation(){
+//        initLocation();
+//        mLocationClient.start();
+//    }
+
+    //设置定位其他选项
+//    private void initLocation(){
+//        LocationClientOption option = new LocationClientOption();
+//        option.setScanSpan(5000);   //设置定时更新位置
+//        option.setIsNeedAddress(true);
+//        mLocationClient.setLocOption(option);
+//    }
+
+    //记得销毁定位活动 耗电
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        mLocationClient.stop();
+    }
+
+    //申请权限
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        switch (requestCode) {
+//            case 1:
+//                if (grantResults.length > 0) {
+//                    for (int result : grantResults) {
+//                        if (result != PackageManager.PERMISSION_GRANTED) {
+//                            ToastUtil.showShortToast("必须同意全部权限才可以使用定位功能");
+//                            finish();
+//                            return;
+//                        }
+//                    }
+//                    requestLocation();
+//                }else {
+//                    ToastUtil.showShortToast("发生未知错误");
+//                    finish();
+//                }
+//                break;
+//                default:
+//        }
+//    }
+
     //退出程序
     @Override
     public void onBackPressed() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ToastUtil.showShortToast(MainActivity.this , "再按一次退出程序");
+            ToastUtil.showShortToast("再按一次退出程序");
             exitTime = System.currentTimeMillis();
         }else {
             super.onBackPressed();
@@ -161,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //刷新数据
-    private void refreshMomorys(){
+    private void refreshMemories(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -173,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        initMemorys();
+                        initMemories();
                         adapter.notifyDataSetChanged();
                         swipeRefresh.setRefreshing(false);
                     }
@@ -183,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //初始化数据方法
-    private void initMemorys(){
+    private void initMemories(){
         memoryList.clear();
         for (int i = 0; i < 50; i++) {
             Random random = new Random();
@@ -208,10 +292,25 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);   //统一方向
                 break;
             case R.id.apps:
-                ToastUtil.showShortToast(MainActivity.this, "Developer by SuperHeroBats");
+                ToastUtil.showShortToast("Developer by SuperHeroBats");
                 break;
             default:
         }
         return true;
     }
+
+    private static final String TAG = "MainActivity";
+
+    //获取定位信息
+//    public class MyLocationListener extends BDAbstractLocationListener {
+//
+//        @Override
+//        public void onReceiveLocation(BDLocation location) {
+//
+//            String districtName = location.getDistrict();
+//            Log.d(TAG, districtName);
+////            positionText.setText(districtName);
+//        }
+//    }
+
 }
