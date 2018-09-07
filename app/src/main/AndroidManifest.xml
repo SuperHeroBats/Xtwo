@@ -31,21 +31,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".WebActivity" />
+        <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".WebActivity"
+            android:label="We软小二">
+
+        </activity>
         <activity android:name=".AboutActivity" />
         <activity
             android:name=".MemoryActivity"
-            android:theme="@style/MemoryActionTheme"></activity>
+            android:theme="@style/MemoryActionTheme"/>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".RepairActivity">
+        <activity android:name=".RepairActivity"
+            android:label="智能报修">
 
         </activity>
+
+        <activity
+            android:name="com.tencent.smtt.sdk.VideoActivity"
+            android:hardwareAccelerated="true"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="com.tencent.smtt.tbs.video.PLAY"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -139,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
                         mDrawerLayout.closeDrawers();
                         break;
                     case R.id.nav_we:   //We软小二
-                        ToastUtil.showShortToast("主功能开发中");
+//                        ToastUtil.showShortToast("主功能开发中");
+                        Intent webIntent = new Intent(MainActivity.this, WebActivity.class);
+                        startActivity(webIntent);
                         break;
                     case R.id.nav_friends:   //朋友
                         ToastUtil.showShortToast("功能待开发");
