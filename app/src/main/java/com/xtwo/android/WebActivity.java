@@ -58,18 +58,15 @@ public class WebActivity extends AppCompatActivity {
         });
 
         //网页的各种属性设置
-        settings.setJavaScriptEnabled(true);
-        settings.setUseWideViewPort(true);   //图片调整webView大小
-
-        //设置加载图片
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setJavaScriptEnabled(true);   //开启JavaScript脚本
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);   //滚动条设置
         settings.setDefaultTextEncodingName("utf-8");   //避免乱码
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        settings.setNeedInitialFocus(false);
-        settings.setSupportZoom(true);
+        settings.setNeedInitialFocus(false);   //设置节点获取焦点
+        settings.setSupportZoom(true);   //支持缩放
+        settings.setUseWideViewPort(true);   //图片调整webView大小
         settings.setLoadWithOverviewMode(true);   //适应屏幕
         settings.setLoadsImagesAutomatically(true);   //自动加载图片
-        settings.setCacheMode(WebSettings.LOAD_DEFAULT | WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);   //缓存模式
 
     }
 
