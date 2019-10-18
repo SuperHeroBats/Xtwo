@@ -2,18 +2,18 @@ package com.xtwo.android;
 
 public class Memory {
     private String name;
-    private int imgageId;
+    private int imageId;
 
-    public Memory(String name, int imgageId) {
+    public Memory(String name, int imageId) {
         this.name = name;
-        this.imgageId = imgageId;
+        this.imageId = imageId;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getImgageId() {
-        return imgageId;
+    public int getImageId() {
+        return imageId;
     }
 }

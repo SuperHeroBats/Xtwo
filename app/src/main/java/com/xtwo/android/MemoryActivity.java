@@ -33,13 +33,13 @@ public class MemoryActivity extends AppCompatActivity {
 //        }
 
         //悬浮按钮点击事件
-        FloatingActionButton floatingActionButton = findViewById(R.id.floating_button);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtil.showShortToast("功能待开发");
-            }
-        });
+//        FloatingActionButton floatingActionButton = findViewById(R.id.floating_button);
+//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ToastUtil.showShortToast("功能待开发");
+//            }
+//        });
 
         Intent intent = getIntent();
         String memoryName = intent.getStringExtra(MEMORY_NAME);
@@ -57,8 +57,7 @@ public class MemoryActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(memoryName);
         Glide.with(this).load(memoryImageId).into(memoryImageView);
         String memoryContent = generateMemoryContent();
-        memoryContentText.setText(memoryContent);
-
+        memoryContentText.setText("上下滑动体验可折叠式标题栏");   //填充可折叠式标题内容
     }
 
     @Override

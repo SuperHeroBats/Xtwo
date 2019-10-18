@@ -40,7 +40,8 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
                 Memory memory = mMemoryList.get(position);
                 Intent intent = new Intent(mContext, MemoryActivity.class);
                 intent.putExtra(MemoryActivity.MEMORY_NAME, memory.getName());
-                intent.putExtra(MemoryActivity.MEMORY_IMAGE_ID, memory.getImgageId());
+                intent.putExtra(MemoryActivity.MEMORY_IMAGE_ID, memory.getImageId());
+                //查看图片
                 mContext.startActivity(intent);
             }
         });
@@ -52,7 +53,7 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.ViewHolder
         //获取位置 设置值
         Memory memory = mMemoryList.get(position);
         holder.memoryName.setText(memory.getName());
-        Glide.with(mContext).load(memory.getImgageId()).into(holder.memoryImage);
+        Glide.with(mContext).load(memory.getImageId()).into(holder.memoryImage);
     }
 
     @Override

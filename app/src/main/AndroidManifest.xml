@@ -25,14 +25,14 @@
             android:value="D8oEKI88eEDhYVkIX8NR7vB0GnMjcCYG" />
 
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".LoginActivity">
-
         </activity>
         <activity android:name=".WebActivity"
             android:label="We软小二">
@@ -64,6 +64,9 @@
                 <action android:name="com.tencent.smtt.tbs.video.PLAY"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".ImageDetailsActivity">
         </activity>
 
     </application>
